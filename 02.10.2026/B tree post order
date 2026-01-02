@@ -1,0 +1,24 @@
+import java.util.*;
+class Node{int data;Node left,right;Node(int d){data=d;}}
+class Tree{
+Node root;
+Node insert(Node n,int d){
+if(n==null)return new Node(d);
+if(d<n.data)n.left=insert(n.left,d);
+else n.right=insert(n.right,d);
+return n;
+}
+void post(Node n){
+if(n!=null){
+post(n.left);
+post(n.right);
+System.out.print(n.data+" ");
+}
+}
+public static void main(String[] a){
+Scanner s=new Scanner(System.in);
+Tree t=new Tree();
+int n=s.nextInt();
+for(int i=0;i<n;i++)t.root=t.insert(t.root,s.nextInt());
+t.post(t.root);
+}}
