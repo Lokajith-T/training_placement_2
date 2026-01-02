@@ -1,0 +1,27 @@
+import java.util.*;
+class Node{int data;Node next;Node(int d){data=d;}}
+class CLL{
+Node head;
+void add(int d){
+Node n=new Node(d);
+if(head==null){head=n;n.next=n;return;}
+Node t=head;
+while(t.next!=head)t=t.next;
+t.next=n;
+n.next=head;
+}
+void display(){
+Node t=head;
+if(t==null)return;
+do{
+System.out.print(t.data+" ");
+t=t.next;
+}while(t!=head);
+}
+public static void main(String[] a){
+Scanner s=new Scanner(System.in);
+CLL c=new CLL();
+int n=s.nextInt();
+for(int i=0;i<n;i++)c.add(s.nextInt());
+c.display();
+}}
