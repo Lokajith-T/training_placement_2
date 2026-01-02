@@ -1,0 +1,26 @@
+import java.util.*;
+class Node{int data;Node left,right;Node(int d){data=d;}}
+class Tree{
+Node root;
+Node insert(Node n,int d){
+if(n==null)return new Node(d);
+if(d<n.data)n.left=insert(n.left,d);
+else n.right=insert(n.right,d);
+return n;
+}
+int dia=0;
+int solve(Node n){
+if(n==null)return 0;
+int l=solve(n.left);
+int r=solve(n.right);
+dia=Math.max(dia,l+r+1);
+return 1+Math.max(l,r);
+}
+public static void main(String[] a){
+Scanner s=new Scanner(System.in);
+Tree t=new Tree();
+int n=s.nextInt();
+for(int i=0;i<n;i++)t.root=t.insert(t.root,s.nextInt());
+t.solve(t.root);
+System.out.println(t.dia);
+}}
