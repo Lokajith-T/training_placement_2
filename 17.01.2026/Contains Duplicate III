@@ -1,0 +1,19 @@
+def containsNearbyAlmostDuplicate(nums, k, t):
+    if t < 0: 
+        return False
+    bucket = {}
+    w = t + 1
+
+    for i, n in enumerate(nums):
+        b = n // w
+        if b in bucket: 
+            return True
+        if b-1 in bucket and abs(n - bucket[b-1]) < w: 
+            return True
+        if b+1 in bucket and abs(n - bucket[b+1]) < w: 
+            return True
+
+        bucket[b] = n
+        if i >= k:
+            del bucket[nums[i-k] // w]
+    return False
